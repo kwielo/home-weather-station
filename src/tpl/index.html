@@ -1,0 +1,49 @@
+$def with (measures)
+
+<div class="columns mt-2">
+    <div class="column col-12">
+        $for measure in measures:
+        <div class="card col-auto float-left mr-1 mb-1">
+            <div class="card-header">
+                <div class="card-title h5">$measure['meter_name']</div>
+                <div class="card-subtitle text-gray">$measure['meter_location']</div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <td><i class="wi wi-thermometer-internal"></i> Temperature</td>
+                        <td>$measure.temperature&deg;C</td>
+                    </tr>
+                    <tr>
+                        <td><i class="wi wi-thermometer-internal"></i> AVG (24 h)</td>
+                        $if measure.avg_temp==None:
+                            <td>N/A</td>
+                        $else:
+                            <td>$measure.avg_temp&deg;C</td>
+                    </tr>
+                    <tr>
+                        <td><i class="wi wi-humidity"></i> Humidity</td>
+                        <td>$measure.humidity%</td>
+                    </tr>
+                    <tr>
+                        <td><i class="wi wi-barometer"></i> Pressure</td>
+                        <td>$measure.pressure hPa</td>
+                    </tr>
+                    <tr>
+                        <td><i class="wi wi-barometer"></i> Mean Sea-Level Pressure</td>
+                        <td>$measure.mslp hPa</td>
+                    </tr>
+                    <tr>
+                        <td><i class="wi wi-train"></i> CAQI</td>
+                        <td>$measure.caqi</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="card-footer text-right">
+                <span class="chip text-tiny">$measure.measured_at</span>
+            </div>
+        </div>
+
+
+    </div>
+</div>
