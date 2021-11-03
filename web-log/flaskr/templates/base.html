@@ -1,0 +1,52 @@
+$def with (page)
+
+<html>
+	<head>
+		<title>Home Weather Station v0.0.1-alpha</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+        <link rel="stylesheet" href="/static/icons/css/weather-icons.min.css">
+
+
+		<meta http-equiv="refresh" content="60">
+        <style>
+            html * { font-family: 'Roboto Condensed', sans-serif; }
+        </style>
+	</head>
+	<body>
+        <div class="container">
+            <header class="navbar mt-2 mb-2">
+                <section class="navbar-section">
+                    <a href="/" class="navbar-brand mr-2">Home Weather Station v0.0.1-alpha</a>
+                    <span>$ctx.path</span>
+                </section>
+            </header>
+            <div class="columns mt-2">
+                <div class="column col-12">
+                    <a href="/" class="btn btn-link text-dark"
+                       onmouseover="this.classList.add('bg-secondary')"
+                       onmouseout="this.classList.remove('bg-secondary')">Latest reads</a>
+                    <div class="dropdown">
+                        <a href="#" class="btn btn-link dropdown-toggle text-dark" tabindex="0"
+                           onmouseover="this.classList.add('bg-secondary')"
+                           onmouseout="this.classList.remove('bg-secondary')">
+                            Measures <i class="icon icon-caret"></i>
+                        </a>
+                        <ul class="menu">
+                            $for meter in MeterRepo.all():
+                            <li class="menu-item">
+                                <a href="/history/$meter.id">$meter.name [$meter.location]</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="divider"></div>
+
+                </div>
+            </div>
+
+$:page
+        </div>
+	</body>
+</html>
